@@ -34,10 +34,10 @@ class FileSynchronizer
     /**
      * Create a new FileSynchronizer instance.
      *
-     * @param FileRepositoryInterface   $files
+     * @param FileRepositoryInterface $files
      * @param FolderRepositoryInterface $folders
      */
-    function __construct(FileRepositoryInterface $files, FolderRepositoryInterface $folders)
+    public function __construct(FileRepositoryInterface $files, FolderRepositoryInterface $folders)
     {
         $this->files   = $files;
         $this->folders = $folders;
@@ -46,7 +46,7 @@ class FileSynchronizer
     /**
      * Sync a file.
      *
-     * @param  File          $resource
+     * @param  File $resource
      * @param  DiskInterface $disk
      * @return null|FileInterface
      */
@@ -68,7 +68,6 @@ class FileSynchronizer
                 ]
             );
         } else {
-
             $file->setAttribute('size', $resource->getSize());
 
             if ($file->trashed()) {
@@ -84,7 +83,7 @@ class FileSynchronizer
     /**
      * Sync the files folder.
      *
-     * @param  File          $resource
+     * @param  File $resource
      * @param  DiskInterface $disk
      * @return null|FolderInterface
      */
@@ -100,8 +99,8 @@ class FileSynchronizer
             if (!$folder = $this->folders->findBySlug($name)) {
                 $folder = $this->folders->create(
                     [
-                        'name'      => $name,
-                        'disk_id'   => $disk->getId(),
+                        'name'    => $name,
+                        'disk_id' => $disk->getId(),
                     ]
                 );
             }

@@ -41,9 +41,7 @@ class Clean extends Command
 
         /* @var FileInterface|EloquentModel $file */
         foreach ($files->allWithTrashed() as $file) {
-
             if (!$file->resource()) {
-
                 $missing = true;
 
                 if ($this->option('force')) {

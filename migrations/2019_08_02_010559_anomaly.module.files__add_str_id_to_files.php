@@ -64,7 +64,6 @@ class AnomalyModuleFilesAddStrIdToFiles extends Migration
 
         /* @var FileInterface|EloquentModel $file */
         foreach ($files->allWithTrashed() as $file) {
-
             if ($file->getStrId()) {
                 continue;
             }
@@ -82,5 +81,4 @@ class AnomalyModuleFilesAddStrIdToFiles extends Migration
 
         $this->assignments()->save($assignment->setAttribute('unique', true));
     }
-
 }

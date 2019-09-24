@@ -55,5 +55,4 @@ class DiskTableBuilder extends TableBuilder
     protected $actions = [
         'prompt',
     ];
-
 }

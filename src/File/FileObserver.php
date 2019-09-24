@@ -42,7 +42,7 @@ class FileObserver extends EntryObserver
          * make sure to set dimensions.
          */
         if ($entry->resource()) {
-            $this->dispatch(new SetDimensions($entry));
+            dispatch_now(new SetDimensions($entry));
         }
 
         return parent::saving($entry);
@@ -55,7 +55,7 @@ class FileObserver extends EntryObserver
      */
     public function deleted(EntryInterface $entry)
     {
-        $this->dispatch(new DeleteResource($entry));
+        dispatch_now(new DeleteResource($entry));
 
         parent::deleted($entry);
     }

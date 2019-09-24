@@ -36,7 +36,7 @@ class RenameFile
      *
      * @param File $file
      */
-    function __construct(File $file, $from)
+    public function __construct(File $file, $from)
     {
         $this->file = $file;
         $this->from = $from;

@@ -3,24 +3,17 @@
 use Anomaly\FilesModule\File\Command\GetType;
 use Anomaly\FilesModule\File\Contract\FileInterface;
 use Anomaly\Streams\Platform\Entry\EntryPresenter;
-use Anomaly\Streams\Platform\Support\Decorator;
-use Illuminate\Contracts\Config\Repository;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Http\Request;
-use Illuminate\Routing\UrlGenerator;
 use Intervention\Image\Constraint;
 
 /**
  * Class FilePresenter
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class FilePresenter extends EntryPresenter
 {
-
-    use DispatchesJobs;
 
     /**
      * The decorated object.
@@ -30,43 +23,6 @@ class FilePresenter extends EntryPresenter
      */
     protected $object;
 
-    /**
-     * The URL generator.
-     *
-     * @var UrlGenerator
-     */
-    protected $url;
-
-    /**
-     * The config repository.
-     *
-     * @var Repository
-     */
-    protected $config;
-
-    /**
-     * The request object.
-     *
-     * @var Request
-     */
-    protected $request;
-
-    /**
-     * Create a new FilePresenter instance.
-     *
-     * @param UrlGenerator $url
-     * @param Request      $request
-     * @param Repository   $config
-     * @param              $object
-     */
-    public function __construct(UrlGenerator $url, Request $request, Repository $config, $object)
-    {
-        $this->url     = $url;
-        $this->config  = $config;
-        $this->request = $request;
-
-        parent::__construct($object);
-    }
 
     /**
      * Return the size label.
@@ -114,7 +70,7 @@ class FilePresenter extends EntryPresenter
      *
      * @deprecated since v2.2 use "size($unit, $decimals)";
      * @param  string $unit
-     * @param  int    $decimals
+     * @param  int $decimals
      * @return string
      */
     public function readableSize($unit = null, $decimals = 2)
@@ -126,7 +82,7 @@ class FilePresenter extends EntryPresenter
      * Return the size in a readable format.
      *
      * @param  string $unit
-     * @param  int    $decimals
+     * @param  int $decimals
      * @return string
      */
     public function size($unit = null, $decimals = 2)
@@ -134,7 +90,6 @@ class FilePresenter extends EntryPresenter
         $bytes = $this->object->getSize();
 
         if (!$unit) {
-
             $size = ['B', 'KB', 'MB', 'GB'];
 
             $factor = floor((strlen($bytes) - 1) / 3);
@@ -179,7 +134,7 @@ class FilePresenter extends EntryPresenter
                 ->output();
         }
 
-        $type = $this->dispatch(new GetType($this->object)) ?: 'document';
+        $type = dispatch_now(new GetType($this->object)) ?: 'document';
 
         return $this->image
             ->make('anomaly.module.files::img/types/' . $type . '.png')
@@ -200,7 +155,7 @@ class FilePresenter extends EntryPresenter
             return $this->object->image()->fit($width, $height)->output();
         }
 
-        $type = $this->dispatch(new GetType($this->object)) ?: 'document';
+        $type = dispatch_now(new GetType($this->object)) ?: 'document';
 
         return $this->image
             ->make('anomaly.module.files::img/types/' . $type . '.png')
@@ -250,7 +205,7 @@ class FilePresenter extends EntryPresenter
         $entry = $this->object->getEntry();
 
         if ($entry && $entry->hasField($key)) {
-            return (New Decorator())->decorate($entry)->{$key};
+            return decorate($entry)->{$key};
         }
 
         return parent::__get($key);

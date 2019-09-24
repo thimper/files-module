@@ -4,7 +4,7 @@ use Anomaly\FilesModule\File\Command\GetFile;
 use Anomaly\FilesModule\File\Command\GetMaxUploadSize;
 use Anomaly\FilesModule\Folder\Command\GetFolder;
 use Anomaly\Streams\Platform\Addon\Plugin\Plugin;
-use Anomaly\Streams\Platform\Support\Decorator;
+
 
 /**
  * Class FilesModulePlugin
@@ -27,19 +27,19 @@ class FilesModulePlugin extends Plugin
             new \Twig_SimpleFunction(
                 'max_upload_size',
                 function () {
-                    return $this->dispatch(new GetMaxUploadSize());
+                    return dispatch_now(new GetMaxUploadSize());
                 }
             ),
             new \Twig_SimpleFunction(
                 'file',
                 function ($identifier) {
-                    return (new Decorator())->decorate($this->dispatch(new GetFile($identifier)));
+                    return decorate(dispatch_now(new GetFile($identifier)));
                 }
             ),
             new \Twig_SimpleFunction(
                 'folder',
                 function ($identifier) {
-                    return (new Decorator())->decorate($this->dispatch(new GetFolder($identifier)));
+                    return decorate(dispatch_now(new GetFolder($identifier)));
                 }
             ),
         ];

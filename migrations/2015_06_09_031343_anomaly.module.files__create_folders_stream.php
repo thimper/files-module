@@ -53,5 +53,4 @@ class AnomalyModuleFilesCreateFoldersStream extends Migration
         ],
         'allowed_types',
     ];
-
 }

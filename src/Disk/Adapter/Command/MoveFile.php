@@ -35,7 +35,7 @@ class MoveFile
      * @param $from
      * @param $to
      */
-    function __construct($from, $to)
+    public function __construct($from, $to)
     {
         $this->from = $from;
         $this->to   = $to;

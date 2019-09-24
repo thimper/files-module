@@ -56,5 +56,4 @@ class FolderTableBuilder extends TableBuilder
     protected $options = [
         'sortable' => true,
     ];
-
 }

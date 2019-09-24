@@ -8,19 +8,12 @@ use Illuminate\Contracts\Auth\Guard;
 /**
  * Class FileLocator
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class FileLocator
 {
-
-    /**
-     * The auth utility.
-     *
-     * @var Guard
-     */
-    protected $auth;
 
     /**
      * The file repository.
@@ -37,13 +30,12 @@ class FileLocator
     protected $folders;
 
     /**
-     * @param FileRepositoryInterface   $files
+     * @param FileRepositoryInterface $files
      * @param FolderRepositoryInterface $folders
-     * @param Guard                     $auth
+     * @param Guard $auth
      */
-    function __construct(FileRepositoryInterface $files, FolderRepositoryInterface $folders, Guard $auth)
+    public function __construct(FileRepositoryInterface $files, FolderRepositoryInterface $folders)
     {
-        $this->auth    = $auth;
         $this->files   = $files;
         $this->folders = $folders;
     }
@@ -57,7 +49,7 @@ class FileLocator
      */
     public function locate($folder, $name)
     {
-        if ( !$folder = $this->folders->findBySlug($folder) ){
+        if (!$folder = $this->folders->findBySlug($folder)) {
             return null;
         }
 

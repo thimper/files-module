@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'file' => 'Failas',
-    'fields' => 'Laukai',
+    'file'    => 'Failas',
+    'fields'  => 'Laukai',
     'general' => 'Pagrindinis',
     'options' => 'Parinktys',
 ];

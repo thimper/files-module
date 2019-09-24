@@ -26,8 +26,8 @@ class FileImage extends FileResponse
      * Create a new FileImage instance.
      *
      * @param ResponseFactory $response
-     * @param MountManager    $manager
-     * @param Image           $image
+     * @param MountManager $manager
+     * @param Image $image
      */
     public function __construct(ResponseFactory $response, MountManager $manager, Image $image)
     {
@@ -40,7 +40,7 @@ class FileImage extends FileResponse
      * Return the response headers.
      *
      * @param  Image $image
-     * @param  int   $quality
+     * @param  int $quality
      * @return Response
      */
     public function generate(Image $image, $quality = 60)

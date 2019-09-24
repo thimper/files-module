@@ -31,7 +31,7 @@ class FolderSeeder extends Seeder
     /**
      * Create a new FolderSeeder instance.
      *
-     * @param DiskRepositoryInterface   $disks
+     * @param DiskRepositoryInterface $disks
      * @param FolderRepositoryInterface $folders
      */
     public function __construct(DiskRepositoryInterface $disks, FolderRepositoryInterface $folders)

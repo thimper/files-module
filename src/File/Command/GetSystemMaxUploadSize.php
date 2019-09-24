@@ -1,6 +1,5 @@
 <?php namespace Anomaly\FilesModule\File\Command;
 
-
 /**
  * Class GetSystemMaxUploadSize
  *

@@ -77,13 +77,25 @@ class FileModel extends FilesFilesEntryModel implements FileInterface
     }
 
     /**
-     * Return the file resource.
+     * Get the related disk's slug.
      *
-     * @return null|File
+     * @return string
      */
-    public function resource()
+    public function getDiskSlug()
     {
-        return $this->dispatch(new GetResource($this));
+        return $this
+            ->getDisk()
+            ->getSlug();
+    }
+
+    /**
+     * Get the related disk.
+     *
+     * @return DiskInterface
+     */
+    public function getDisk()
+    {
+        return $this->disk;
     }
 
     /**
@@ -98,6 +110,36 @@ class FileModel extends FilesFilesEntryModel implements FileInterface
         }
 
         return "{$folder->getSlug()}/{$this->getName()}";
+    }
+
+    /**
+     * Get the related folder.
+     *
+     * @return null|FolderInterface
+     */
+    public function getFolder()
+    {
+        return $this->folder;
+    }
+
+    /**
+     * Get the name.
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Return the file resource.
+     *
+     * @return null|File
+     */
+    public function resource()
+    {
+        return dispatch_now(new GetResource($this));
     }
 
     /**
@@ -121,16 +163,6 @@ class FileModel extends FilesFilesEntryModel implements FileInterface
     }
 
     /**
-     * Get the alt text.
-     *
-     * @return string
-     */
-    public function getAltText()
-    {
-        return $this->alt_text;
-    }
-
-    /**
      * Return the alt text or default.
      *
      * @return string
@@ -141,23 +173,13 @@ class FileModel extends FilesFilesEntryModel implements FileInterface
     }
 
     /**
-     * Get the related folder.
-     *
-     * @return null|FolderInterface
-     */
-    public function getFolder()
-    {
-        return $this->folder;
-    }
-
-    /**
-     * Get the name.
+     * Get the alt text.
      *
      * @return string
      */
-    public function getName()
+    public function getAltText()
     {
-        return $this->name;
+        return $this->alt_text;
     }
 
     /**
@@ -187,7 +209,7 @@ class FileModel extends FilesFilesEntryModel implements FileInterface
      */
     public function image()
     {
-        return $this->dispatch(new GetImage($this));
+        return dispatch_now(new GetImage($this));
     }
 
     /**
@@ -197,7 +219,7 @@ class FileModel extends FilesFilesEntryModel implements FileInterface
      */
     public function type()
     {
-        return $this->dispatch(new GetType($this));
+        return dispatch_now(new GetType($this));
     }
 
     /**
@@ -208,7 +230,7 @@ class FileModel extends FilesFilesEntryModel implements FileInterface
      */
     public function canPreview()
     {
-        return $this->dispatch(new GetPreviewSupport($this));
+        return dispatch_now(new GetPreviewSupport($this));
     }
 
     /**
@@ -382,28 +404,6 @@ class FileModel extends FilesFilesEntryModel implements FileInterface
         }
 
         return "{$disk->getSlug()}://{$this->path()}";
-    }
-
-    /**
-     * Get the related disk.
-     *
-     * @return DiskInterface
-     */
-    public function getDisk()
-    {
-        return $this->disk;
-    }
-
-    /**
-     * Get the related disk's slug.
-     *
-     * @return string
-     */
-    public function getDiskSlug()
-    {
-        return $this
-            ->getDisk()
-            ->getSlug();
     }
 
     /**

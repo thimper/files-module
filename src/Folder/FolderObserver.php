@@ -38,8 +38,8 @@ class FolderObserver extends EntryObserver
      */
     public function created(EntryInterface $entry)
     {
-        $this->dispatch(new CreateStream($entry));
-        $this->dispatch(new CreateDirectory($entry));
+        dispatch_now(new CreateStream($entry));
+        dispatch_now(new CreateDirectory($entry));
 
         parent::created($entry);
     }
@@ -51,8 +51,8 @@ class FolderObserver extends EntryObserver
      */
     public function deleted(EntryInterface $entry)
     {
-        $this->dispatch(new DeleteDirectory($entry));
-        $this->dispatch(new DeleteStream($entry));
+        dispatch_now(new DeleteDirectory($entry));
+        dispatch_now(new DeleteStream($entry));
 
         parent::deleted($entry);
     }

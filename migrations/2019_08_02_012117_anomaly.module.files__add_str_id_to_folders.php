@@ -1,6 +1,5 @@
 <?php
 
-use Anomaly\FilesModule\File\Contract\FileRepositoryInterface;
 use Anomaly\FilesModule\Folder\Contract\FolderInterface;
 use Anomaly\FilesModule\Folder\Contract\FolderRepositoryInterface;
 use Anomaly\FilesModule\Folder\FolderRepository;
@@ -56,7 +55,6 @@ class AnomalyModuleFilesAddStrIdToFolders extends Migration
 
         /* @var FolderInterface|EloquentModel $folder */
         foreach ($folders->allWithTrashed() as $folder) {
-
             if ($folder->getStrId()) {
                 continue;
             }
@@ -74,5 +72,4 @@ class AnomalyModuleFilesAddStrIdToFolders extends Migration
 
         $this->assignments()->save($assignment->setAttribute('unique', true));
     }
-
 }

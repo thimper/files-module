@@ -3,7 +3,6 @@
 use Anomaly\FilesModule\File\Contract\FileInterface;
 use Anomaly\FilesModule\File\Contract\FileRepositoryInterface;
 
-
 /**
  * Class DeleteResource
  *

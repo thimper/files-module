@@ -1,7 +1,7 @@
 <?php namespace Anomaly\FilesModule\File\Command;
 
 use Anomaly\FilesModule\File\Contract\FileInterface;
-use Illuminate\Contracts\Config\Repository;
+
 
 /**
  * Class GetType
@@ -38,7 +38,7 @@ class GetType
      */
     public function handle(Repository $config)
     {
-        foreach ($config->get('anomaly.module.files::mimes.types') as $type => $extensions) {
+        foreach (config('anomaly.module.files::mimes.types') as $type => $extensions) {
             if (in_array($this->file->getExtension(), $extensions)) {
                 return $type;
             }

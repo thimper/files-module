@@ -25,7 +25,7 @@ class MoveController extends AdminController
      */
     public function choose(FolderRepositoryInterface $folders)
     {
-        return $this->view->make(
+        return view(
             'anomaly.module.files::admin/move/choose',
             [
                 'folders' => $folders->all(),
@@ -45,7 +45,6 @@ class MoveController extends AdminController
         FileManager $manager,
         $folder
     ) {
-
         if (!$folder = $folders->findBySlug($folder)) {
             abort(400);
         }

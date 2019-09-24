@@ -20,5 +20,4 @@ class FolderPresenter extends EntryPresenter
      * @var FolderInterface
      */
     protected $object;
-
 }

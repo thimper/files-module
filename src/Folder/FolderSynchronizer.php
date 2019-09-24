@@ -27,7 +27,7 @@ class FolderSynchronizer
      *
      * @param FolderRepositoryInterface $folders
      */
-    function __construct(FolderRepositoryInterface $folders)
+    public function __construct(FolderRepositoryInterface $folders)
     {
         $this->folders = $folders;
     }
@@ -35,7 +35,7 @@ class FolderSynchronizer
     /**
      * Sync a file.
      *
-     * @param  Directory     $resource
+     * @param  Directory $resource
      * @param  DiskInterface $disk
      * @return null|FolderInterface
      */

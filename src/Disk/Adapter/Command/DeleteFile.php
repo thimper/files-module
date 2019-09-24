@@ -27,7 +27,7 @@ class DeleteFile
      *
      * @param File $file
      */
-    function __construct(File $file)
+    public function __construct(File $file)
     {
         $this->file = $file;
     }

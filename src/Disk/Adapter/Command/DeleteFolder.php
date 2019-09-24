@@ -27,7 +27,7 @@ class DeleteFolder
      *
      * @param Directory $directory
      */
-    function __construct(Directory $directory)
+    public function __construct(Directory $directory)
     {
         $this->directory = $directory;
     }

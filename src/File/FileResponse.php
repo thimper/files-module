@@ -23,22 +23,14 @@ class FileResponse
     protected $manager;
 
     /**
-     * The response factory
-     *
-     * @var ResponseFactory
-     */
-    protected $response;
-
-    /**
      * Create a new FileResponse
      *
      * @param ResponseFactory $response
-     * @param MountManager    $manager
+     * @param MountManager $manager
      */
-    public function __construct(ResponseFactory $response, MountManager $manager)
+    public function __construct(MountManager $manager)
     {
-        $this->manager  = $manager;
-        $this->response = $response;
+        $this->manager = $manager;
     }
 
     /**
@@ -50,7 +42,7 @@ class FileResponse
     public function make(FileInterface $file)
     {
         /* @var Response $response */
-        $response = $this->response->make();
+        $response = response();
 
         $response->headers->set('Etag', $file->etag());
         $response->headers->set('Content-Type', $file->getMimetype());

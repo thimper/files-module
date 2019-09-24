@@ -4,7 +4,6 @@ use Anomaly\FilesModule\File\Contract\FileInterface;
 use Anomaly\FilesModule\File\Contract\FileRepositoryInterface;
 use Anomaly\FilesModule\Folder\Contract\FolderInterface;
 use Anomaly\Streams\Platform\Model\EloquentModel;
-use Illuminate\Contracts\Config\Repository;
 use Illuminate\Validation\Factory;
 use League\Flysystem\MountManager;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -12,9 +11,9 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 /**
  * Class FileUploader
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class FileUploader
 {
@@ -25,13 +24,6 @@ class FileUploader
      * @var FileRepositoryInterface
      */
     protected $files;
-
-    /**
-     * The config repository.
-     *
-     * @var Repository
-     */
-    protected $config;
 
     /**
      * The mount manager.
@@ -133,7 +125,6 @@ class FileUploader
          * Generate and store extra details about image files.
          */
         if (in_array($entry->getExtension(), config('anomaly.module.files::mimes.types.image'))) {
-
             $size       = filesize($file->getRealPath());
             $dimensions = getimagesize($file->getRealPath());
             $mimeType   = mime_content_type($file->getRealPath());

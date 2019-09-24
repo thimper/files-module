@@ -4,14 +4,13 @@ use Anomaly\FilesModule\File\FileUploader;
 use Anomaly\FilesModule\File\Upload\UploadTableBuilder;
 use Anomaly\FilesModule\Folder\Contract\FolderRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
-use Illuminate\Contracts\Auth\Guard;
 
 /**
  * Class UploadController
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class UploadController extends AdminController
 {
@@ -19,13 +18,12 @@ class UploadController extends AdminController
     /**
      * Return the form to upload files.
      *
-     * @param  FolderRepositoryInterface                  $folders
-     * @param  UploadTableBuilder                         $table
-     * @param  Guard                                      $auth
-     * @param                                             $folder
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param FolderRepositoryInterface $folders
+     * @param UploadTableBuilder $table
+     * @param $folder
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(FolderRepositoryInterface $folders, UploadTableBuilder $table, Guard $auth, $folder)
+    public function index(FolderRepositoryInterface $folders, UploadTableBuilder $table, $folder)
     {
         $folder = $folders->findBySlug($folder);
 
@@ -33,7 +31,7 @@ class UploadController extends AdminController
 
         $table = $table->getTable();
 
-        return $this->view->make('anomaly.module.files::admin/upload/index', compact('folder', 'table'));
+        return view('anomaly.module.files::admin/upload/index', compact('folder', 'table'));
     }
 
     /**
@@ -45,7 +43,7 @@ class UploadController extends AdminController
      */
     public function choose(FolderRepositoryInterface $folders)
     {
-        return $this->view->make(
+        return view(
             'anomaly.module.files::admin/upload/choose',
             [
                 'folders' => $folders->all(),
@@ -56,7 +54,7 @@ class UploadController extends AdminController
     /**
      * Handle the upload.
      *
-     * @param  FileUploader              $uploader
+     * @param  FileUploader $uploader
      * @param  FolderRepositoryInterface $folders
      * @return \Illuminate\Http\JsonResponse
      */
@@ -66,17 +64,17 @@ class UploadController extends AdminController
 
         try {
             if ($file = $uploader->upload(
-                $this->request->file('upload'),
-                $folders->find($this->request->get('folder'))
+                request()->file('upload'),
+                $folders->find(request('folder'))
             )
             ) {
-                return $this->response->json($file->getAttributes());
+                return response()->json($file->getAttributes());
             }
         } catch (\Exception $e) {
             $error = $e->getMessage();
         }
 
-        return $this->response->json(['message' => $error], 500);
+        return response()->json(['message' => $error], 500);
     }
 
     /**
@@ -88,7 +86,7 @@ class UploadController extends AdminController
     public function recent(UploadTableBuilder $builder)
     {
         return $builder
-            ->setUploaded(explode(',', $this->request->get('uploaded')))
+            ->setUploaded(explode(',', request('uploaded')))
             ->make()
             ->getTableContent();
     }

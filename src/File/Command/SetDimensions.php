@@ -3,7 +3,6 @@
 use Anomaly\FilesModule\Disk\Adapter\AdapterFilesystem;
 use Anomaly\FilesModule\File\Contract\FileInterface;
 
-
 /**
  * Class SetDimensions
  *
@@ -55,7 +54,6 @@ class SetDimensions
         try {
             list($width, $height) = getimagesize($path);
         } catch (\Exception $e) {
-
             return;
         }
 

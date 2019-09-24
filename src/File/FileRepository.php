@@ -27,7 +27,7 @@ class FileRepository extends EntryRepository implements FileRepositoryInterface
      *
      * @param FileModel $model
      */
-    function __construct(FileModel $model)
+    public function __construct(FileModel $model)
     {
         $this->model = $model;
     }
@@ -36,7 +36,7 @@ class FileRepository extends EntryRepository implements FileRepositoryInterface
      * Find a file by it's name and folder.
      *
      * @param                     $name
-     * @param  FolderInterface    $folder
+     * @param  FolderInterface $folder
      * @return null|FileInterface
      */
     public function findByNameAndFolder($name, FolderInterface $folder)

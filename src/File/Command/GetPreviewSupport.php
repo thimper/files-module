@@ -1,7 +1,7 @@
 <?php namespace Anomaly\FilesModule\File\Command;
 
 use Anomaly\FilesModule\File\Contract\FileInterface;
-use Illuminate\Contracts\Config\Repository;
+
 
 /**
  * Class GetPreviewSupport
@@ -38,7 +38,7 @@ class GetPreviewSupport
      */
     public function handle(Repository $config)
     {
-        foreach ($config->get('anomaly.module.files::mimes.thumbnails') as $extension) {
+        foreach (config('anomaly.module.files::mimes.thumbnails') as $extension) {
             if ($this->file->getExtension() == $extension) {
                 return true;
             }

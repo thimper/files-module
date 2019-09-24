@@ -26,7 +26,7 @@ class FolderRepository extends EntryRepository implements FolderRepositoryInterf
      *
      * @param FolderModel $model
      */
-    function __construct(FolderModel $model)
+    public function __construct(FolderModel $model)
     {
         $this->model = $model;
     }

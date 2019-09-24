@@ -46,5 +46,4 @@ class AnomalyModuleFilesCreateDisksStream extends Migration
             'translatable' => true,
         ],
     ];
-
 }

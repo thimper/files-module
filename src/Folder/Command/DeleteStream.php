@@ -3,7 +3,6 @@
 use Anomaly\FilesModule\Folder\Contract\FolderInterface;
 use Anomaly\Streams\Platform\Stream\Contract\StreamRepositoryInterface;
 
-
 /**
  * Class DeleteStream
  *

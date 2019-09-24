@@ -2,7 +2,6 @@
 
 use Anomaly\FilesModule\File\Contract\FileRepositoryInterface;
 use Anomaly\FilesModule\Folder\Contract\FolderRepositoryInterface;
-use Anomaly\Streams\Platform\Support\Decorator;
 
 
 /**
@@ -35,9 +34,9 @@ class GetFolder
     /**
      * Handle the command.
      *
-     * @param  FileRepositoryInterface   $files
+     * @param  FileRepositoryInterface $files
      * @param  FolderRepositoryInterface $folders
-     * @param  Decorator                 $decorator
+     * @param  Decorator $decorator
      * @return \Anomaly\FilesModule\Folder\Contract\FolderInterface|\Anomaly\Streams\Platform\Model\EloquentModel|null
      */
     public function handle(FolderRepositoryInterface $folders)

@@ -2,7 +2,6 @@
 
 use Anomaly\FilesModule\File\Contract\FileRepositoryInterface;
 use Anomaly\FilesModule\Folder\Contract\FolderRepositoryInterface;
-use Anomaly\Streams\Platform\Support\Decorator;
 
 
 /**
@@ -35,9 +34,9 @@ class GetFile
     /**
      * Handle the command.
      *
-     * @param  FileRepositoryInterface   $files
+     * @param  FileRepositoryInterface $files
      * @param  FolderRepositoryInterface $folders
-     * @param  Decorator                 $decorator
+     * @param  Decorator $decorator
      * @return \Anomaly\FilesModule\File\Contract\FileInterface|\Anomaly\Streams\Platform\Model\EloquentModel|null
      */
     public function handle(FileRepositoryInterface $files, FolderRepositoryInterface $folders)
@@ -47,7 +46,6 @@ class GetFile
         }
 
         if (!is_numeric($this->identifier) && str_is('*://*/*', $this->identifier)) {
-
             list($disk, $folder, $name) = preg_split('/(:\/\/|\/)/', $this->identifier);
 
             if (!$folder = $folders->findBySlug($folder)) {
@@ -58,7 +56,6 @@ class GetFile
         }
 
         if (!is_numeric($this->identifier) && str_is('*/*', $this->identifier)) {
-
             list($folder, $name) = explode('/', $this->identifier);
 
             if (!$folder = $folders->findBySlug($folder)) {

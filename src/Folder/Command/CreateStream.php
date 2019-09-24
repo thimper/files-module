@@ -2,8 +2,6 @@
 
 use Anomaly\FilesModule\Folder\Contract\FolderInterface;
 use Anomaly\Streams\Platform\Stream\Contract\StreamRepositoryInterface;
-use Illuminate\Contracts\Config\Repository;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
  * Class CreateStream
@@ -15,7 +13,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 class CreateStream
 {
 
-    use DispatchesJobs;
 
     /**
      * The file folder instance.
@@ -38,21 +35,21 @@ class CreateStream
      * Handle the command.
      *
      * @param StreamRepositoryInterface $streams
-     * @param Repository                $config
+     * @param Repository $config
      */
     public function handle(StreamRepositoryInterface $streams, Repository $config)
     {
         $streams->create(
             [
-                $config->get('app.fallback_locale') => [
+                config('app.fallback_locale') => [
                     'name'        => $this->folder->getName(),
                     'description' => $this->folder->getDescription(),
                 ],
-                'slug'                              => $this->folder->getSlug(),
-                'namespace'                         => 'files',
-                'translatable'                      => true,
-                'trashable'                         => true,
-                'locked'                            => false,
+                'slug'                        => $this->folder->getSlug(),
+                'namespace'                   => 'files',
+                'translatable'                => true,
+                'trashable'                   => true,
+                'locked'                      => false,
             ]
         );
     }

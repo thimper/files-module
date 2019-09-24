@@ -48,7 +48,6 @@ class Sync extends Command
     ) {
         /* @var FolderInterface $folder */
         foreach ($folders->all() as $folder) {
-
             $contents = array_filter(
                 $manager->listContents($folder->path()),
                 function (array $file) {
