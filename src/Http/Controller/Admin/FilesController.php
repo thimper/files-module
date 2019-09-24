@@ -74,7 +74,7 @@ class FilesController extends AdminController
             abort(404);
         }
 
-        return $this->redirect->to($file->route('view'));
+        return redirect($file->route('view'));
     }
 
     /**
