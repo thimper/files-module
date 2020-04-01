@@ -25,7 +25,6 @@ class AnomalyModuleFilesCreateFilesStream extends Migration
         'name'      => [
             'required' => true,
         ],
-        'origin_name',
         'disk'      => [
             'required' => true,
         ],

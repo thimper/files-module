@@ -19,7 +19,6 @@ class AnomalyModuleFilesCreateFilesFields extends Migration
      */
     protected $fields = [
         'name'          => 'anomaly.field_type.text',
-        'origin_name'   => 'anomaly.field_type.text',
         'slug'          => [
             'type'   => 'anomaly.field_type.slug',
             'config' => [

@@ -125,8 +125,12 @@ class FileUploader
          *
          * @var FileInterface|EloquentModel $entry
          */
+
         $origin_name = $file->getClientOriginalName();
-        $filename = "abc2.jpg";
+
+        $pinyin = app('Overtrue\Pinyin\Pinyin');
+        $filename = $pinyin->permalink($origin_name,"",PINYIN_KEEP_PUNCTUATION);
+
         $entry = $this->manager->put(
             $disk->getSlug() . '://' . $folder->getSlug() . '/' . FileSanitizer::clean($filename),
             file_get_contents($file->getRealPath())
@@ -135,6 +139,7 @@ class FileUploader
         $entry->origin_name = $origin_name;
 
         Log::info("upload entry = " . $entry->name);
+
         /**
          * Generate and store extra details about image files.
          */

@@ -34,15 +34,14 @@ class FilesController extends PublicController
     public function read(FileLocator $locator, FileReader $reader, Repository $config, $folder, $name)
     {
         $public = $config->get('anomaly.module.files::folders.public');
+
         if ($public && !in_array($folder, $public)) {
             abort(404);
         }
-        Log::info("read name = " . $name);
+
         if (!$file = $locator->locate($folder, urldecode($name))) {
             abort(404);
         }
-        Log::info("read file:" . $file);
-
         return $reader->read($file);
     }
 

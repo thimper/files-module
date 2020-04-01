@@ -28,12 +28,13 @@ class FileTableBuilder extends TableBuilder
                 'name'                      => [
                     'sort_column' => 'name',
                     'wrapper'     => '
-                    <strong>{value.file}</strong>
+                    <strong>{value.name}</strong>
                     <br>
                     <small class="text-muted">{value.disk}://{value.folder}/{value.file}</small>
                     <br>
                     <span>{value.size} {value.keywords}</span>',
                     'value'       => [
+                        'name'     => 'entry.origin_name',
                         'file'     => 'entry.name',
                         'folder'   => 'entry.folder.slug',
                         'keywords' => 'entry.keywords.labels|join',
@@ -70,6 +71,7 @@ class FileTableBuilder extends TableBuilder
     protected $filters = [
         'search' => [
             'fields' => [
+                'origin_name',
                 'name',
                 'keywords',
                 'mime_type',
@@ -90,12 +92,13 @@ class FileTableBuilder extends TableBuilder
         'name'          => [
             'sort_column' => 'name',
             'wrapper'     => '
-                    <strong>{value.file}</strong>
+                    <strong>{value.name}</strong>
                     <br>
                     <small class="text-muted">{value.disk}://{value.folder}/{value.file}</small>
                     <br>
                     <span>{value.size} {value.keywords}</span>',
             'value'       => [
+                'name'     => 'entry.origin_name',
                 'file'     => 'entry.name',
                 'folder'   => 'entry.folder.slug',
                 'keywords' => 'entry.keywords.labels|join',

@@ -92,7 +92,10 @@ class FilesController extends AdminController
         /* @var FolderInterface|null $folder */
         $folder = $this->dispatch(new GetFolder($folder));
 
-        if ($folder && $file = $files->findByNameAndFolder($this->request->get('file'), $folder)) {
+        $file = $this->request->get('file');
+        $file = resolve('pinyin')->permalink($file,"",PINYIN_KEEP_PUNCTUATION);
+
+        if ($folder && $file = $files->findByNameAndFolder($file, $folder)) {
             $exists = true;
         }
 

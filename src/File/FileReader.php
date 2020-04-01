@@ -1,7 +1,7 @@
 <?php namespace Anomaly\FilesModule\File;
 
 use Anomaly\FilesModule\File\Contract\FileInterface;
-use Illuminate\Support\Facades\Log;
+
 use Symfony\Component\HttpFoundation\Response;
 
 /**
